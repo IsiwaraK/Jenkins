@@ -22,12 +22,12 @@ pipeline {
                 success {
                     mail body: 'Integration testing Successful',
                     subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com',
+                    to: 'kavinduisiwara@gmail.com'
                 }
                 failure {
                     mail body: 'Integration Tests Stage Failed',
                     subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com',
+                    to: 'kavinduisiwara@gmail.com'
                 }
             }
         }
@@ -49,12 +49,12 @@ pipeline {
                 success {
                     mail body: 'Security Scan Successful',
                     subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com',
+                    to: 'kavinduisiwara@gmail.com'
                 }
                 failure {
                     mail body: 'Security Scan Stage Failed',
                     subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com',
+                    to: 'kavinduisiwara@gmail.com'
                 }
             }
         }
