@@ -30,7 +30,9 @@ pipeline {
                 }
                 failure {
                     script {
-                        mail body: 'Integration Tests Stage Failed',
+                        def buildUrl = env.BUILD_URL
+                        def consoleLogUrl = "${buildUrl}console"
+                        mail body: "Integration Tests Stage Failed. Log: ${consoleLogUrl}",
                              subject: 'Build Status',
                              to: 'kavinduisiwara@gmail.com'
                     }
@@ -52,14 +54,22 @@ pipeline {
             }
             post {
                 success {
-                    mail body: 'Security Scan Successful',
-                         subject: 'Build Status',
-                         to: 'kavinduisiwara@gmail.com'
+                    script {
+                        def buildUrl = env.BUILD_URL
+                        def consoleLogUrl = "${buildUrl}console"
+                        mail body: "Security Scan Successful. Log: ${consoleLogUrl}",
+                             subject: 'Build Status',
+                             to: 'kavinduisiwara@gmail.com'
+                    }
                 }
                 failure {
-                    mail body: 'Security Scan Stage Failed',
-                         subject: 'Build Status',
-                         to: 'kavinduisiwara@gmail.com'
+                    script {
+                        def buildUrl = env.BUILD_URL
+                        def consoleLogUrl = "${buildUrl}console"
+                        mail body: "Security Scan Stage Failed. Log: ${consoleLogUrl}",
+                             subject: 'Build Status',
+                             to: 'kavinduisiwara@gmail.com'
+                    }
                 }
             }
         }
