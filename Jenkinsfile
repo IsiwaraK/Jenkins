@@ -18,7 +18,6 @@ pipeline{
                       subject: 'Unit and Integration Tests',
                       to: 'kavinduisiwara@gmail.com',
                       body: 'Unit and Integration Tests successfuly completed', 
-                      attachLog: true
                     )   
                 }
                 failure{
@@ -26,7 +25,6 @@ pipeline{
                       subject: 'Unit and Integration Tests',
                       to: 'kavinduisiwara@gmail.com',
                       body: 'Unit and Integration Tests Failed. Check logs.', 
-                      attachLog: true
                     )   
                 }
             }
@@ -50,7 +48,6 @@ pipeline{
                       subject: 'Security Scan',
                       to: 'kavinduisiwara@gmail.com',
                       body: 'Security Scan Tests successfuly completed', 
-                      attachLog: true
                     )   
                 }
                 failure{
@@ -58,7 +55,6 @@ pipeline{
                       subject: 'Security Scan',
                       to: 'kavinduisiwara@gmail.com',
                       body: 'Security Scan Tests successfuly completed', 
-                      attachLog: true
                     )   
                 }
             }
