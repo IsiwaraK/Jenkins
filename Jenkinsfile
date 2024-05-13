@@ -1,85 +1,83 @@
-pipeline {
-    agent any
-
-    stages {
+pipeline{
+  agent any
+  stages {
         stage('Build') {
             steps {
-                echo 'Building the code using Maven...'
-                // Run Maven to build the code
+                echo "Build the code using Maven"
             }
         }
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit tests...'
-                // Run unit tests using JUnit or TestNG
-                // Tool: JUnit, TestNG
-                
-                echo 'Running integration tests...'
-                // Run integration tests using Selenium or Cucumber
-                // Tool: Selenium, Cucumber
+                echo "Run unit tests using JUnit"
+                echo "Run integration tests using Selenium"
             }
-             post {
-                success {
-                    mail body: 'Integration testing Successful',
-                    subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com'
+
+            post{
+                success{
+                    emailext(
+                      subject: 'Unit and Integration Tests',
+                      to: 'kavinduisiwara@gmail.com',
+                      body: 'Unit and Integration Tests successfuly completed', 
+                      attachLog: true
+                    )   
                 }
-                failure {
-                    mail body: 'Integration Tests Stage Failed',
-                    subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com'
+                failure{
+                    emailext(
+                      subject: 'Unit and Integration Tests',
+                      to: 'kavinduisiwara@gmail.com',
+                      body: 'Unit and Integration Tests Failed. Check logs.', 
+                      attachLog: true
+                    )   
                 }
             }
+
         }
+
+        
         stage('Code Analysis') {
             steps {
-                echo 'Running code analysis using SonarQube...'
-                // Integrate SonarQube for code analysis
-                // Tool: SonarQube
+                echo "Integrate a code analysis tool to analyse the code using SonarQube"
             }
         }
-       
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan using OWASP Dependency-Check...'
-                // Perform a security scan on the code using OWASP Dependency-Check
-                // Tool: OWASP Dependency-Check
-            }
-             post {
-                success {
-                    mail body: 'Security Scan Successful',
-                    subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com'
+                echo "Perform a security scan on the code using OWASP Dependency-Check"
                 }
-                failure {
-                    mail body: 'Security Scan Stage Failed',
-                    subject: 'Build Status',
-                    to: 'kavinduisiwara@gmail.com'
+
+            post{
+                success{
+                    emailext(
+                      subject: 'Security Scan',
+                      to: 'kavinduisiwara@gmail.com',
+                      body: 'Security Scan Tests successfuly completed', 
+                      attachLog: true
+                    )   
+                }
+                failure{
+                    emailext(
+                      subject: 'Security Scan',
+                      to: 'kavinduisiwara@gmail.com',
+                      body: 'Security Scan Tests successfuly completed', 
+                      attachLog: true
+                    )   
                 }
             }
-        }
+            }
+            
         stage('Deploy to Staging') {
             steps {
-                echo 'Deploying the application to staging server...'
-                // Deploy the application to a staging server (e.g., AWS EC2 instance)
-                // Tool: AWS CLI, SSH plugin
+                echo "deploy the application to Azure Virtual Machines"
             }
         }
-        
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Running integration tests on staging environment...'
-                // Run integration tests on the staging environment
-                // Tool: Selenium, Cucumber, Postman
+                echo "Run integration tests on the staging environment"
             }
-           
         }
         stage('Deploy to Production') {
             steps {
-                echo 'Deploying the application to production server...'
-                // Deploy the application to a production server (e.g., AWS EC2 instance)
-                // Tool: AWS CLI, SSH plugin
-            }
+                echo "deploy the application to a production server Azure Virtual Machines"
         }
     }
+}
 }
