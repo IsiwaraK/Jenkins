@@ -20,7 +20,7 @@ pipeline {
             }
              post {
                 success {
-                    mail body: 'Integration testing Successful',
+                    mail body: 'Integration testing Successful <a href="${BUILD_URL}">log</a>',
                     subject: 'Build Status',
                     to: 'kavinduisiwara@gmail.com'
                 }
